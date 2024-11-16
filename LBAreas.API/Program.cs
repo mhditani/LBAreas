@@ -1,4 +1,7 @@
 using LBAreas.Entities.Data;
+using LBAreas.Services.Mappings;
+using LBAreas.Services.Repositories;
+using LBAreas.Services.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +21,13 @@ builder.Services.AddDbContext<LBAreasDbContext>(options =>
 });
 
 
+// Inject Repositories
+builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
 
 
+
+// Add AutoMapper
+builder.Services.AddAutoMapper(typeof(MapperProfiles));
 
 
 var app = builder.Build();
