@@ -17,6 +17,16 @@ namespace LBAreas.Services.Mappings
             CreateMap<Region, RegionDto>().ReverseMap();
             CreateMap<Region, UpdateRegionRequestDto>().ReverseMap();
 
+
+
+            CreateMap<Walk, AddWalkRequestDto>().ReverseMap();
+            CreateMap<Walk, WalkDto>().ReverseMap();
+
+
+
+            CreateMap<Difficulty, DifficultyDto>().ReverseMap();
+
+
         }
     }
 }

@@ -4,6 +4,7 @@ using LBAreas.Entities.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LBAreas.Entities.Migrations
 {
     [DbContext(typeof(LBAreasDbContext))]
-    partial class LBAreasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241116213110_SeedingDataForDifficultiesAndRegions")]
+    partial class SeedingDataForDifficultiesAndRegions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

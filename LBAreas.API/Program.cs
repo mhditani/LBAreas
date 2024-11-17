@@ -23,7 +23,7 @@ builder.Services.AddDbContext<LBAreasDbContext>(options =>
 
 // Inject Repositories
 builder.Services.AddScoped<IRegionRepository, SQLRegionRepository>();
-
+builder.Services.AddScoped<IWalkRepository, SQLWalkRepository>();
 
 
 // Add AutoMapper
