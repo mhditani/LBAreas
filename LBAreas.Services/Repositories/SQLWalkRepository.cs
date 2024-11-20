@@ -37,5 +37,13 @@ namespace LBAreas.Services.Repositories
                 .ToListAsync();
 
         }
+
+        public async Task<Walk?> GetByIdAsync(Guid id)
+        {
+           return await db.Walks
+                .Include(x => x.Difficulty)
+                .Include(x => x.Region)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

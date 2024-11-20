@@ -24,8 +24,8 @@ namespace LBAreas.Entities.Models.Domain
 
 
 
-        public Difficulty Difficulty { get; set; } = new Difficulty();
+        public Difficulty Difficulty { get; set; } 
 
-        public Region Region { get; set; } = new Region();
+        public Region Region { get; set; } 
     }
 }

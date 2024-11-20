@@ -18,7 +18,7 @@ namespace LBAreas.Entities.Models.DTO
 
         public string? WalkImageUrl { get; set; }
 
-        public RegionDto Region { get; set; } = new RegionDto();
-        public DifficultyDto Difficulty { get; set; } = new DifficultyDto();
+        public RegionDto Region { get; set; } 
+        public DifficultyDto Difficulty { get; set; } 
     }
 }

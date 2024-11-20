@@ -58,5 +58,45 @@ namespace LBAreas.API.Controllers
             // Map Domain to DTO
             return Ok(mapper.Map<List<WalkDto>>(walksDomain));
         }
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetById([FromRoute]Guid id)
+        {
+            var walkDomian = await repo.GetByIdAsync(id);
+
+            if (walkDomian == null)
+            {
+                return NotFound();
+            }
+
+            // Map domain to DTO
+            return Ok(mapper.Map<WalkDto>(walkDomian));    
+        }
+
+
+
+
+
+
+
+
+
+
+
+        //[HttpPut("{id:Guid}")]
+        //public async Task<IActionResult> Update([FromRoute]Guid id, )
+        //{
+        //    var walkDomain
+        //}
     }
 }
