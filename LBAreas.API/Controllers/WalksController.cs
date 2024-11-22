@@ -93,10 +93,43 @@ namespace LBAreas.API.Controllers
 
 
 
-        //[HttpPut("{id:Guid}")]
-        //public async Task<IActionResult> Update([FromRoute]Guid id, )
-        //{
-        //    var walkDomain
-        //}
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, UpdateWalkRequestDto updateWalkRequestDto)
+        {
+            //map DTO to Domain
+            var walkDomain = mapper.Map<Walk>(updateWalkRequestDto);
+
+            walkDomain = await repo.UpdateAsync(id, walkDomain);
+
+            if (walkDomain == null)
+            {
+                return NotFound();
+            }
+
+            // Map domain to dto
+            return Ok(mapper.Map<WalkDto>(walkDomain));
+        }
+
+
+
+
+
+
+
+        [HttpDelete("{id:Guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+           var deletedWalkDomain = await repo.DeleteAsync(id);
+
+            if (deletedWalkDomain == null)
+            {
+                return NotFound();
+            }
+
+            // Map Domain to DTO
+             
+
+            return Ok(mapper.Map<WalkDto>(deletedWalkDomain));
+        }
     }
 }

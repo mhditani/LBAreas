@@ -21,6 +21,8 @@ namespace LBAreas.Services.Mappings
 
             CreateMap<Walk, AddWalkRequestDto>().ReverseMap();
             CreateMap<Walk, WalkDto>().ReverseMap();
+            CreateMap<Walk, UpdateWalkRequestDto>().ReverseMap();
+
 
 
 
