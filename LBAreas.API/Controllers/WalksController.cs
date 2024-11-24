@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LBAreas.Entities.Models.Domain;
 using LBAreas.Entities.Models.DTO;
+using LBAreas.Services.CustomActionFilters;
 using LBAreas.Services.Repositories.IRepositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,16 +28,17 @@ namespace LBAreas.API.Controllers
 
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddWalkRequestDto addWalkRequestDto)
         {
-            // Map Dto to Domain model
-            var walkDomain = mapper.Map<Walk>(addWalkRequestDto);
+                // Map Dto to Domain model
+                var walkDomain = mapper.Map<Walk>(addWalkRequestDto);
 
-            await repo.CreateAsync(walkDomain);
+                await repo.CreateAsync(walkDomain);
 
 
-            // Map domain to DTO
-            return Ok(mapper.Map<WalkDto>(walkDomain));
+                // Map domain to DTO
+                return Ok(mapper.Map<WalkDto>(walkDomain)); 
         }
 
 
@@ -94,20 +96,24 @@ namespace LBAreas.API.Controllers
 
 
         [HttpPut("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, UpdateWalkRequestDto updateWalkRequestDto)
         {
-            //map DTO to Domain
-            var walkDomain = mapper.Map<Walk>(updateWalkRequestDto);
+            
+                //map DTO to Domain
+                var walkDomain = mapper.Map<Walk>(updateWalkRequestDto);
 
-            walkDomain = await repo.UpdateAsync(id, walkDomain);
+                walkDomain = await repo.UpdateAsync(id, walkDomain);
 
-            if (walkDomain == null)
-            {
-                return NotFound();
-            }
+                if (walkDomain == null)
+                {
+                    return NotFound();
+                }
 
-            // Map domain to dto
-            return Ok(mapper.Map<WalkDto>(walkDomain));
+                // Map domain to dto
+                return Ok(mapper.Map<WalkDto>(walkDomain));
+            
+      
         }
 
 

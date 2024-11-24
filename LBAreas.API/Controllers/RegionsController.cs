@@ -2,6 +2,7 @@
 using LBAreas.Entities.Data;
 using LBAreas.Entities.Models.Domain;
 using LBAreas.Entities.Models.DTO;
+using LBAreas.Services.CustomActionFilters;
 using LBAreas.Services.Repositories.IRepositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,18 +62,20 @@ namespace LBAreas.API.Controllers
 
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
-            // Map Dto to Domain Model
-            var regionDomain = mapper.Map<Region>(addRegionRequestDto);
+            
+                // Map Dto to Domain Model
+                var regionDomain = mapper.Map<Region>(addRegionRequestDto);
 
-            // Use Domain Model to create region
-            regionDomain = await repo.CreateAsync(regionDomain);
+                // Use Domain Model to create region
+                regionDomain = await repo.CreateAsync(regionDomain);
 
-            // Map Domain model back to DTO
-            var regionDto = mapper.Map<RegionDto>(regionDomain);
+                // Map Domain model back to DTO
+                var regionDto = mapper.Map<RegionDto>(regionDomain);
 
-            return CreatedAtAction(nameof(GetById), new {id = regionDto.Id}, regionDto);
+                return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto); 
         }
 
 
@@ -92,23 +95,25 @@ namespace LBAreas.API.Controllers
 
 
         [HttpPut("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute]Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
-            // Map DTO to Domain Model
-            var regionDomain = mapper.Map<Region>(updateRegionRequestDto);
+            
+                // Map DTO to Domain Model
+                var regionDomain = mapper.Map<Region>(updateRegionRequestDto);
 
 
-            // Check if region exists
-            regionDomain =  await repo.UpdateAsync(id, regionDomain);      
+                // Check if region exists
+                regionDomain = await repo.UpdateAsync(id, regionDomain);
 
-            if (regionDomain == null)
-            {
-                return NotFound();
-            }
+                if (regionDomain == null)
+                {
+                    return NotFound();
+                }
 
 
-            // Map Domain to DTO Model
-            return Ok(mapper.Map<RegionDto>(regionDomain));
+                // Map Domain to DTO Model
+                return Ok(mapper.Map<RegionDto>(regionDomain));      
             
         }
 
