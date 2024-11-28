@@ -54,9 +54,9 @@ namespace LBAreas.API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery, [FromQuery] string? sortBy, [FromQuery] bool? isAscending, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 1000)
         {
-            var walksDomain = await repo.GetAllAsync();
+            var walksDomain = await repo.GetAllAsync(filterOn, filterQuery, sortBy, isAscending ?? true, pageNumber, pageSize);
             // Map Domain to DTO
             return Ok(mapper.Map<List<WalkDto>>(walksDomain));
         }
