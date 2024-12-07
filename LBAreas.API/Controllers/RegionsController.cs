@@ -4,6 +4,7 @@ using LBAreas.Entities.Models.Domain;
 using LBAreas.Entities.Models.DTO;
 using LBAreas.Services.CustomActionFilters;
 using LBAreas.Services.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace LBAreas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RegionsController : ControllerBase
     {
         

@@ -10,7 +10,7 @@ namespace LBAreas.Entities.Data
 {
     public class LBAreasDbContext : DbContext
     {
-        public LBAreasDbContext(DbContextOptions options) : base(options)
+        public LBAreasDbContext(DbContextOptions<LBAreasDbContext> options) : base(options)
         {
         }
 
